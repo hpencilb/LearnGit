@@ -4,7 +4,6 @@
 - 添加文件到Git仓库，分两步：
   1. 使用命令`git add `，注意，可反复多次使用，添加多个文件；
   2. 使用命令`git commit -m `，完成。
-
 - 要随时掌握工作区的状态，使用`git status`命令。
 - 如果`git status`告诉你有文件被修改过，用`git diff`可以查看修改内容。
 - `HEAD`指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令`git reset --hard commit_id`。
@@ -28,3 +27,17 @@
   - 创建+切换分支：`git checkout -b `或者`git switch -c `
   - 合并某分支到当前分支：`git merge `
   - 删除分支：`git branch -d `
+- 当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+  解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
+  用`git log --graph`命令可以看到分支合并图。
+- 合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。
+- 修复bug时，通过创建新的bug分支进行修复，然后合并，最后删除；
+  当手头工作没有完成时，先把工作现场`git stash`一下，然后去修复bug，修复后，再`git stash pop`，回到工作现场；
+  在master分支上修复的bug，想要合并到当前dev分支，可以用`git cherry-pick `命令，把bug提交的修改“复制”到当前分支，避免重复劳动。
+- 如果要丢弃一个没有被合并过的分支，可以通过`git branch -D `强行删除。
+- 查看远程库信息，使用`git remote -v`；
+- 本地新建的分支如果不推送到远程，对其他人就是不可见的；
+- 从本地推送分支，使用`git push origin branch-name`，如果推送失败，先用`git pull`抓取远程的新提交；
+- 在本地创建和远程分支对应的分支，使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致；
+- 建立本地分支和远程分支的关联，使用`git branch --set-upstream branch-name origin/branch-name`；
+- 从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突。
