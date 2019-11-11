@@ -36,8 +36,19 @@
   在master分支上修复的bug，想要合并到当前dev分支，可以用`git cherry-pick `命令，把bug提交的修改“复制”到当前分支，避免重复劳动。
 - 如果要丢弃一个没有被合并过的分支，可以通过`git branch -D `强行删除。
 - 查看远程库信息，使用`git remote -v`；
-- 本地新建的分支如果不推送到远程，对其他人就是不可见的；
-- 从本地推送分支，使用`git push origin branch-name`，如果推送失败，先用`git pull`抓取远程的新提交；
-- 在本地创建和远程分支对应的分支，使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致；
-- 建立本地分支和远程分支的关联，使用`git branch --set-upstream branch-name origin/branch-name`；
-- 从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突。
+  本地新建的分支如果不推送到远程，对其他人就是不可见的；
+  从本地推送分支，使用`git push origin branch-name`，如果推送失败，先用`git pull`抓取远程的新提交；
+  在本地创建和远程分支对应的分支，使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致；
+  建立本地分支和远程分支的关联，使用`git branch --set-upstream branch-name origin/branch-name`；
+  从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突。
+- `git rebase`操作可以把本地未push的分叉提交历史整理成直线，目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
+- 命令`git tag `用于新建一个标签，默认为`HEAD`，也可以指定一个commit id；
+  命令`git tag -a  -m "blablabla..."`可以指定标签信息；
+  命令`git tag`可以查看所有标签。
+- 命令`git push origin `可以推送一个本地标签；
+  命令`git push origin --tags`可以推送全部未推送过的本地标签；
+  命令`git tag -d `可以删除一个本地标签；
+  命令`git push origin :refs/tags/`可以删除一个远程标签。
+- 忽略某些文件时，需要编写`.gitignore`；
+- `.gitignore`文件本身要放到版本库里，并且可以对`.gitignore`做版本管理！
+
